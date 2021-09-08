@@ -26,5 +26,5 @@
 	
 	<!-- 컴포넌트 스켄 방식 -->
 	<!-- 컴포넌트 스캔은 어노테이션과 스캔 범위만으로 처리한다. 타겟 클래스들이 모여있는 패키지명을 아래 base-package에 적어준다. -->
-	<context:component-scan base-package="org.ict.controller.di.classfile" />
+	<context:component-scan base-package="org.ict.controller.*.*" />
 </beans>

@@ -1,6 +1,6 @@
 package org.ict.controller.di;
 
-import org.ict.controller.di.classfile.Broadcast;
+import org.ict.controller.di.classfile.Satellite;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class DiMainSpringVer {
@@ -13,8 +13,8 @@ public class DiMainSpringVer {
 		
 		// 위에 root-context.xml이라는 bean-container와 연락을 하겠다고 지정을 했으니 이제 그 공장에 있는 객체를 마음대로 꺼내 쓸 수 있다. 
 		// 얻어오는 방법은 위에 생성한 context 객체를 이용해 context.getBean("bean이름", 자료형.class); 라도 입력하면 된다.
-		Broadcast broadcast = context.getBean("broadcast", Broadcast.class);
-		broadcast.broadcast();
+		Satellite satellite = context.getBean("satellite", Satellite.class);
+		satellite.satelliteBroadcast();
 		
 		// 호출이 끝나면 context를 닫아줘야 한다. 
 		context.close();
