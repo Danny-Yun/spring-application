@@ -7,16 +7,16 @@ public class DiMainSpringVer {
 	
 
 	public static void main(String[] args) {
-		// ºó ÄÁÅ×ÀÌ³Ê¿¡ È£ÃâÇØ ¿Ï¼ºÇ° °´Ã¼¸¦ ¹Ş¾Æ¿Í ½ÇÇàÇÏ´Â ÄÚµå¸¦ ÀÛ¼º
-		// È£Ãâ½Ã »ç¿ëÇÏ´Â ¿¬¶ô¿ë °´Ã¼´Â GenericXmlApplicationContextÀÌ´Ù.
+		// ë¹ˆ ì»¨í…Œì´ë„ˆì— í˜¸ì¶œí•´ ì™„ì„±í’ˆ ê°ì²´ë¥¼ ë°›ì•„ì™€ ì‹¤í–‰í•˜ëŠ” ì½”ë“œë¥¼ ì‘ì„±
+		// í˜¸ì¶œì‹œ ì‚¬ìš©í•˜ëŠ” ì—°ë½ìš© ê°ì²´ëŠ” GenericXmlApplicationContextì´ë‹¤.
 		GenericXmlApplicationContext context = new GenericXmlApplicationContext("file:src/main/webapp/WEB-INF/spring/root-context.xml");
 		
-		// À§¿¡ root-context.xmlÀÌ¶ó´Â bean-container¿Í ¿¬¶ôÀ» ÇÏ°Ú´Ù°í ÁöÁ¤À» ÇßÀ¸´Ï ÀÌÁ¦ ±× °øÀå¿¡ ÀÖ´Â °´Ã¼¸¦ ¸¶À½´ë·Î ²¨³» ¾µ ¼ö ÀÖ´Ù. 
-		// ¾ò¾î¿À´Â ¹æ¹ıÀº À§¿¡ »ı¼ºÇÑ context °´Ã¼¸¦ ÀÌ¿ëÇØ context.getBean("beanÀÌ¸§", ÀÚ·áÇü.class); ¶óµµ ÀÔ·ÂÇÏ¸é µÈ´Ù.
+		// ìœ„ì— root-context.xmlì´ë¼ëŠ” bean-containerì™€ ì—°ë½ì„ í•˜ê² ë‹¤ê³  ì§€ì •ì„ í–ˆìœ¼ë‹ˆ ì´ì œ ê·¸ ê³µì¥ì— ìˆëŠ” ê°ì²´ë¥¼ ë§ˆìŒëŒ€ë¡œ êº¼ë‚´ ì“¸ ìˆ˜ ìˆë‹¤. 
+		// ì–»ì–´ì˜¤ëŠ” ë°©ë²•ì€ ìœ„ì— ìƒì„±í•œ context ê°ì²´ë¥¼ ì´ìš©í•´ context.getBean("beanì´ë¦„", ìë£Œí˜•.class); ë¼ë„ ì…ë ¥í•˜ë©´ ëœë‹¤.
 		Satellite satellite = context.getBean("satellite", Satellite.class);
 		satellite.satelliteBroadcast();
 		
-		// È£ÃâÀÌ ³¡³ª¸é context¸¦ ´İ¾ÆÁà¾ß ÇÑ´Ù. 
+		// í˜¸ì¶œì´ ëë‚˜ë©´ contextë¥¼ ë‹«ì•„ì¤˜ì•¼ í•œë‹¤. 
 		context.close();
 	}
 }

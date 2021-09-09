@@ -8,14 +8,14 @@ public class Broadcast {
 	
 	private Stage stage;
 	
-	// @Autowired¸¦ ÀÌ¿ëÇÑ ÁÖÀÔÀº »ı¼ºÀÚ¿¡µµ Àû¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
+	// @Autowiredë¥¼ ì´ìš©í•œ ì£¼ì…ì€ ìƒì„±ìì—ë„ ì ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 	@Autowired
 	public Broadcast(Stage stage) {
 		this.stage = stage;
 	}
 	
 	public void broadcast() {
-		System.out.print("¹æ¼Û ¼ÛÃâ¿ë ");
+		System.out.print("ë°©ì†¡ ì†¡ì¶œìš©");
 		stage.perform();
 	}
 }

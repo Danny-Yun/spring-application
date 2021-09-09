@@ -7,16 +7,16 @@ import org.ict.controller.di.classfile.Stage;
 public class DiMainJavaVer {
 
 	public static void main(String[] args) {
-		// °¡¼ö °´Ã¼ È£Ãâ
+		// ê°€ìˆ˜ ê°ì²´ í˜¸ì¶œ
 		Singer singer = new Singer();
 		singer.sing();
 		
-		// ¹«´ë °´Ã¼ »ı¼º ÈÄ ±â´É È£Ãâ
-		// ¹«´ë °´Ã¼´Â »ı¼º½Ã ¹İµå½Ã singer°¡ ¸ÕÀú ÀÖ¾î¾ß ÇÏ¹Ç·Î ¹«´ë´Â singer¿¡ ÀÇÁ¸ÇÑ´Ù. 
+		// ë¬´ëŒ€ ê°ì²´ ìƒì„± í›„ ê¸°ëŠ¥ í˜¸ì¶œ
+		// ë¬´ëŒ€ ê°ì²´ëŠ” ìƒì„±ì‹œ ë°˜ë“œì‹œ singerê°€ ë¨¼ì € ìˆì–´ì•¼ í•˜ë¯€ë¡œ ë¬´ëŒ€ëŠ” singerì— ì˜ì¡´í•œë‹¤. 
 		Stage stage = new Stage(singer);
 		stage.perform();
 		
-		// ¹æ¼Û ¹«´ë¸¦ ¼ÛÃâÇÏ´Â ±â´É È£Ãâ
+		// ë°©ì†¡ ë¬´ëŒ€ë¥¼ ì†¡ì¶œí•˜ëŠ” ê¸°ëŠ¥ í˜¸ì¶œ
 		Broadcast broadcast = new Broadcast(stage);
 		broadcast.broadcast();
 

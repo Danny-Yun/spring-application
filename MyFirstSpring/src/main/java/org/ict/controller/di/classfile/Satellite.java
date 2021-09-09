@@ -12,7 +12,7 @@ public class Satellite {
 	}
 	
 	public void satelliteBroadcast() {
-		System.out.print("À§¼º ");
+		System.out.print("ìœ„ì„±");
 		broadcast.broadcast();
 	}
 	

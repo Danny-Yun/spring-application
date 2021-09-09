@@ -6,18 +6,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class Stage {
 		
-	// Singer À§¿¡ @Autowired¸¦ ºÙÀÌ¸é, ÄÁÅ×ÀÌ³Ê ³»ºÎ¿¡ ÀÏÄ¡ÇÏ´Â ÀÚ·áÇüÀÌ Á¸ÀçÇÏ¸é ÀÚµ¿À¸·Î ÀÇÁ¸°ü°è¸¦ ¸¸µé¾îÁØ´Ù.
+	// Singer ìœ„ì— @Autowiredë¥¼ ë¶™ì´ë©´, ì»¨í…Œì´ë„ˆ ë‚´ë¶€ì— ì¼ì¹˜í•˜ëŠ” ìë£Œí˜•ì´ ì¡´ì¬í•˜ë©´ ìë™ìœ¼ë¡œ ì˜ì¡´ê´€ê³„ë¥¼ ë§Œë“¤ì–´ì¤€ë‹¤.
 	@Autowired
 	private Singer singer;
 	
-	// °´Ã¼ »ı¼º½Ã ¹«Á¶°Ç SingerÅ¸ÀÔÀ» ÆÄ¶ó¹ÌÅÍ·Î Àü´ŞÇØ¾ß ÇÔ
+	// ê°ì²´ ìƒì„±ì‹œ ë¬´ì¡°ê±´ Singeríƒ€ì…ì„ íŒŒë¼ë¯¸í„°ë¡œ ì „ë‹¬í•´ì•¼ í•¨
 	public Stage(Singer singer) {
 		this.singer = singer;
 	}
 	
 	public void perform() {
-		 System.out.print("¹«´ë¿¡¼­ ");
-		 // ½ÇÁ¦ °ø¿¬Àº °¡¼ö°¡ ´ã´ç
+		 System.out.print("ë¬´ëŒ€ì—ì„œ");
+		 // ì‹¤ì œ ê³µì—°ì€ ê°€ìˆ˜ê°€ ë‹´ë‹¹
 		 singer.sing();
 	}
 
