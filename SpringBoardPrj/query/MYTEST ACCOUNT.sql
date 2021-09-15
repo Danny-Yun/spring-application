@@ -22,4 +22,6 @@ INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nex
 
 SELECT * FROM board_tbl;
 
+DELETE FROM board_tbl WHERE b_no=41;
+
 commit;

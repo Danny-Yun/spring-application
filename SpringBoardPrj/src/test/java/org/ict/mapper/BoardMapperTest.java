@@ -28,7 +28,7 @@ public class BoardMapperTest {
 	}
 	
 	// insert를 실행할 테스트 코드
-	@Test
+	//@Test
 	public void testInsert() {
 		// 글 입력을 위해서 BoardVO 타입을 매개로 사용한다. 
 		BoardVO vo = new BoardVO();
@@ -42,10 +42,28 @@ public class BoardMapperTest {
 		boardMapper.insert(vo);
 	}
 	
-	@Test
+	//@Test
 	public void testSelect() {
 		long b_no = 1;
 		boardMapper.select(b_no);
+	}
+	
+	//@Test
+	public void testDelete() {
+		long b_no = 3;
+		boardMapper.delete(b_no);
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setB_title("수정된 제목");
+		vo.setB_content("본문 수정됨");
+		vo.setB_writer("얄리얄리얄랴성");
+		vo.setB_no(2L);
+		
+		boardMapper.update(vo);
 	}
 	
 	
