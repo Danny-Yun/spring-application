@@ -38,14 +38,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void modify(BoardVO vo) {
-		// TODO Auto-generated method stub
-		
+		log.info("글 수정 작업 실행 - " + vo);
+		boardMapper.update(vo);
 	}
 
 	@Override
 	public void remove(Long b_no) {
-		// TODO Auto-generated method stub
-		
+		log.info(b_no + "글 삭제 작업 실행");
+		boardMapper.delete(b_no);
 	}
 	
 	// 글 전체 목록을 가져오는 로직을 작성

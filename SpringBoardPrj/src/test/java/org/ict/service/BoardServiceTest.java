@@ -49,9 +49,27 @@ public class BoardServiceTest {
 		boardService.getList();
 	}
 	
-	@Test 
+	//@Test 
 	public void testGet() {
 		long b_no = 3;
 		boardService.get(b_no);
+	}
+	
+	@Test
+	public void testModify() {
+		BoardVO vo = new BoardVO();
+		
+		vo.setB_title("서비스 수정글");
+		vo.setB_content("서비스 본문수정");
+		vo.setB_writer("서비스 글쓴이 수정");
+		vo.setB_no(2L);
+		
+		boardService.modify(vo);
+	}
+	
+	@Test
+	public void testRemove() {
+		long b_no = 11;
+		boardService.remove(b_no);
 	}
 }
