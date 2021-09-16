@@ -21,15 +21,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="board" items="${list }">
+			<c:forEach var="list" items="${list }">
 				<tr>
 					<td>${list.b_no }</td>
-					<td>${list.b_title }</td>
+					<td><a href='/board/get/${list.b_no }'>${list.b_title }</a></td>
 					<td>${list.b_writer }</td>
 					<td>${list.b_regdate }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<button type="button" class="btn btn-outline-success" onclick="location.href='/board/register'">새 글 쓰기</button>&nbsp;
 </body>
 </html>

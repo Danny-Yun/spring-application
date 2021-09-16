@@ -37,7 +37,7 @@ public class BoardControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	@Test
+	//@Test
 	public void testList() throws Exception {
 		
 		log.info(
@@ -51,6 +51,37 @@ public class BoardControllerTests {
 			.getModelAndView()
 			.getModelMap()
 			);
+	}
+	
+	// /board/register 주소로 파라미터 값을 post방식으로 넘겼을 때 글이 써지는지 안 써지는지 테스트
+	//@Test
+	public void testRegister() throws Exception {
+		
+		// 아래 코드는 post방식으로 파라미터 3개를 주소에 전달해주는 코드이다. 
+		// 결과 메시지는 문자열 resultPage에 저장해둔다.
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/board/register")
+				.param("b_title", "테스트코드제목")
+				.param("b_content", "테스트코드본문")
+				.param("b_writer", "테스트코드글쓴이")
+				).andReturn().getModelAndView().getViewName();
+		
+		// 변수에 저장된 값을 다시 로깅을 해서 출력한다. 
+		log.info(resultPage);
+	}
+	
+	// .param("b_no", "글번호")로 파라미터를 줬을 때 해당 글이 잘 얻어와지는지 체크
+	// 참고로 .param()으로 전달하는 자료는 자료형을 막론하고 무조건 " "로 감싸서 문자화시켜야 한다.
+	// 그 이유는 url에는 자료형 구분이 없고 오직 String뿐이기 때문이다.
+	@Test 
+	public void testGet() throws Exception {
+		
+		String resultPage = mockMvc.perform(
+			MockMvcRequestBuilders.get("/board/get/12"))
+			.andReturn().getModelAndView().getViewName();
+		
+		// 변수에 저장된 값을 다시 로깅해서 출력한다. 
+		log.info(resultPage);
 	}
 	
 }

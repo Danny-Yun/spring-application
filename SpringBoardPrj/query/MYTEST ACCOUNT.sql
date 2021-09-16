@@ -20,8 +20,6 @@ INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nex
 INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nextval, '테스트4', '테스트444','글쓴이4');
 INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nextval, '테스트5', '테스트555','글쓴이5');
 
-SELECT * FROM board_tbl;
-
-DELETE FROM board_tbl WHERE b_no=41;
+SELECT * FROM board_tbl; 
 
 commit;
