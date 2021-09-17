@@ -24,6 +24,6 @@ public interface BoardService {
 	public void remove(Long b_no);
 	
 	// 전체 글 목록
-	public List<BoardVO> getList();
+	public List<BoardVO> getList(String keyword);
 	
 }

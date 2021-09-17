@@ -27,13 +27,17 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping("/list")  //Get방식으로 주소연결
-	public void list(Model model) {
+	public void list(String keyword, Model model) {
 		
 		log.info("list로직 접속");
+		if(keyword == null) {
+			keyword = "";
+		}
 		// 전체 글 정보 얻어온 다음
-		List<BoardVO> boardList = boardService.getList();
+		List<BoardVO> boardList = boardService.getList(keyword);
 		// view 파일에 list라는 이름으로 넘겨주기
 		model.addAttribute("list", boardList);
+		model.addAttribute("keyword", keyword);
 	}
 	
 	@PostMapping("/register")  // Post방식으로만 접속 허용
@@ -41,6 +45,7 @@ public class BoardController {
 		// 글을 썼으면 상세페이지나 글 목록으로 이동시켜야 한다. 
 		// 1. 글 쓰는 로직 실행
 		boardService.register(vo);
+		log.info("insertSelectKey 확인 : " + vo);
 		// 2. list 주소로 강제로 이동을 시킨다. 
 		rttr.addFlashAttribute("result", vo.getB_no());
 		
@@ -57,9 +62,41 @@ public class BoardController {
 	// /get을 주소로 getMapping을 사용하는 메서드 get을 활용
 	@GetMapping("/get/{b_no}")
 	public String get(@PathVariable Long b_no, Model model) {
+		
 		log.info("get 로직 접속");
 		BoardVO vo = boardService.get(b_no);
 		model.addAttribute("board", vo);
 		return "/board/detail";
 	}
+	
+	// get방식으로 삭제를 허용하면 매크로 등을 이용해서 마음대로 글 삭제를 하는 경우가 생길 수 있다. 
+	// 무조건 삭제 버튼을 클릭해서 삭제할 수 있도록 post방식의 접근만 허용한다. 
+	@PostMapping("/remove")
+	public String remove(Long b_no, RedirectAttributes rttr) {
+		
+		log.info("remove 로직 접속");
+		boardService.remove(b_no);
+		rttr.addFlashAttribute("success", "success");
+		return "redirect:/board/list";
+	}
+	
+	// 수정로직도 post방식으로 진행해야 한다.
+	@PostMapping("/modify") 
+	public String modify(BoardVO vo, RedirectAttributes rttr) {
+		
+		log.info("modify 로직 접속");
+		boardService.modify(vo);
+		rttr.addFlashAttribute("success", "success");
+		return "redirect:/board/get/" + vo.getB_no();
+	}
+	
+	@PostMapping("modify/{b_no}")
+	public String modifyForm(@PathVariable Long b_no, Model model) {
+		
+		BoardVO vo = boardService.get(b_no);
+		model.addAttribute("board", vo);
+		return "/board/modify";
+	}
+	
+	
 }

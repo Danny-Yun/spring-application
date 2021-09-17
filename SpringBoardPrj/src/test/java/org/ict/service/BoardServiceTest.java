@@ -31,7 +31,7 @@ public class BoardServiceTest {
 		assertNotNull(boardService);
 	}
 	
-	//@Test
+	@Test
 	public void testRegister() {
 		// register 로직이 BoardVO를 필요로 하므로,
 		// 먼저 vo부터 생성해서 자료 입력 후 전달함
@@ -44,9 +44,10 @@ public class BoardServiceTest {
 		boardService.register(vo);
 	}
 	
-	//@Test
+	@Test
 	public void testGetList() {
-		boardService.getList();
+		String keyword = "";
+		boardService.getList(keyword);
 	}
 	
 	//@Test 
@@ -55,7 +56,7 @@ public class BoardServiceTest {
 		boardService.get(b_no);
 	}
 	
-	@Test
+	//@Test
 	public void testModify() {
 		BoardVO vo = new BoardVO();
 		
@@ -67,7 +68,7 @@ public class BoardServiceTest {
 		boardService.modify(vo);
 	}
 	
-	@Test
+	//@Test
 	public void testRemove() {
 		long b_no = 11;
 		boardService.remove(b_no);

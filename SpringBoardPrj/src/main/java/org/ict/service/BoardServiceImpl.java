@@ -25,7 +25,8 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void register(BoardVO vo) {
 		log.info("글 등록 작업 실행");
-		boardMapper.insert(vo);
+		// boardMapper.insert(vo)에서 b_no를 얻기위해 변경
+		boardMapper.insertSelectKey(vo);
 	}
 
 	// 전체 글이 아닌 특정 글 하나만 가져오는 로직
@@ -50,9 +51,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 글 전체 목록을 가져오는 로직을 작성
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(String keyword) {
 		log.info("글 전체 목록 조회 실행");
-		List<BoardVO> boardList = boardMapper.getList();
+		List<BoardVO> boardList = boardMapper.getList(keyword);
 		return boardList;
 	}
 
