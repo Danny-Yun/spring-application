@@ -46,10 +46,14 @@
 				// 그냥 list페이지 접근시엔 success를 날려주지 않아서 아무것도 들어오지 않고
 				// remove 로직의 결과로 넘어왔을때만 데이터가 전달됨
 				
-				let result2 = "${success}";
-				console.log(result2);
-				if(result2 === "success") {
-					alert("글이 정상적으로 삭제되었습니다.");
+				let result = "${success}";
+				console.log(result);
+				let bno = "${b_no}"
+				
+				if(result === "removeOK") {
+					alert(bno + "번 글이 정상적으로 삭제되었습니다.");
+				} else if(result === "registerOK") {
+					alert(bno + "번 글이 정상적으로 등록되었습니다.")
 				}
 			</script>
 		</div>

@@ -9,16 +9,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
 	rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
 	crossorigin="anonymous">
-<script> 
-	function remove() {
-		if(confirm("정말로 삭제하시겠습니까?")) {
-			let choice = document.getElementById("remove");
-			choice.submit();
-		} else {
-			location.href="/board/get/${board.b_no}";
-		}
-	}
-</script>
 </head>
 <body>
 	<div class="col-md-10">
@@ -54,6 +44,16 @@
 				<input type="hidden" value="${board.b_no }" name="b_no" />
 			</form>
 			<button class="btn btn-outline-success" value="삭제하기" onclick="remove()">삭제하기</button>
+			<script> 
+				function remove() {
+					if(confirm("정말로 삭제하시겠습니까?")) {
+						let choice = document.getElementById("remove");
+						choice.submit();
+					} else {
+						location.href="/board/get/${board.b_no}";
+					}
+				}
+			</script>
 			
 			<button class="btn btn-outline-success col-md-3" type="button" onclick="location.href='/board/list'">리스트로 돌아가기</button>
 		</div>

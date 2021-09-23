@@ -47,7 +47,8 @@ public class BoardController {
 		boardService.register(vo);
 		log.info("insertSelectKey 확인 : " + vo);
 		// 2. list 주소로 강제로 이동을 시킨다. 
-		rttr.addFlashAttribute("result", vo.getB_no());
+		rttr.addFlashAttribute("b_no", vo.getB_no());
+		rttr.addFlashAttribute("success", "registerOK");
 		
 		// redirect로 이동시킬 때는 "redirect:파일명" 
 		return "redirect:/board/list";
@@ -76,7 +77,8 @@ public class BoardController {
 		
 		log.info("remove 로직 접속");
 		boardService.remove(b_no);
-		rttr.addFlashAttribute("success", "success");
+		rttr.addFlashAttribute("success", "removeOK");
+		rttr.addFlashAttribute("b_no", b_no);		
 		return "redirect:/board/list";
 	}
 	
