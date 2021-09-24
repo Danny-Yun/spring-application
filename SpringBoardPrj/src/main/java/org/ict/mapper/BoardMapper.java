@@ -3,6 +3,7 @@ package org.ict.mapper;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 
 public interface BoardMapper {
 
@@ -26,5 +27,8 @@ public interface BoardMapper {
 	// 글 수정 로직, BoardVO를 받아서 수정하고, 바꿀 내역은 title, content, writer를 vo에 받음
 	// updatedate는 sysdate로, where 구문은 b_no로 구분해서 처리한다. 
 	public void update(BoardVO vo);
-	
+
+	// 페이징 처리를 하면서 조회할 것이기 때문에 Criteria 정보를 파라미터로 제공해야
+	// 몇 페이지의 글을 조회할지 정보를 같이 쿼리문에 전송할 수 있다.
+	public List<BoardVO> getListPaging(Criteria cri);
 }

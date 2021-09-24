@@ -62,4 +62,13 @@
 		b_no=#{b_no}
 	</update>
 	
+	<select id="getListPaging" resultType="org.ict.domain.BoardVO">
+		<![CDATA[
+			SELECT * FROM
+				(SELECT /*+ INDEX_DESC(board_tbl pk_board) */
+				 rownum rn, board_tbl.* FROM board_tbl WHERE rownum <= #{pageNum} * #{amount})
+			WHERE rn > (#{pageNum} - 1) * #{amount}
+		]]>
+	</select>
+	
 </mapper>

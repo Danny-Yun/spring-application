@@ -37,7 +37,7 @@ public class BoardControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-	@Test
+	//@Test
 	public void testList() throws Exception {
 		
 		log.info(
@@ -52,9 +52,17 @@ public class BoardControllerTests {
 			.getModelMap()
 			);
 	}
+	@Test
+	public void testGetListPaging() throws Exception {
+		
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.get("/board/list?pageNum=7&amount=10"))
+				.andReturn().getModelAndView().getViewName();
+		log.info(resultPage);
+	}
 	
 	// /board/register 주소로 파라미터 값을 post방식으로 넘겼을 때 글이 써지는지 안 써지는지 테스트
-	@Test
+	//@Test
 	public void testRegister() throws Exception {
 		
 		// 아래 코드는 post방식으로 파라미터 3개를 주소에 전달해주는 코드이다. 
@@ -104,5 +112,6 @@ public class BoardControllerTests {
 			.andReturn().getModelAndView().getViewName();
 		log.info(resultPage);
 	}
+	
 	
 }

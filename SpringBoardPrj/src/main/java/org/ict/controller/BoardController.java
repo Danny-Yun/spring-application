@@ -3,6 +3,7 @@ package org.ict.controller;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 import org.ict.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	/*
 	@GetMapping("/list")  //Get방식으로 주소연결
 	public void list(String keyword, Model model) {
 		
@@ -39,6 +41,18 @@ public class BoardController {
 		model.addAttribute("list", boardList);
 		model.addAttribute("keyword", keyword);
 	}
+	*/
+	
+	// 페이징 처리가 되는 리스트 메서드
+	@GetMapping("/list")
+	// Criteria를 파라미터에 선언해 pageNum, amount처리
+	public void List(Criteria cri, Model model) {
+		log.info("list로직 접속");
+		// pagenUM, amount 로 전달된 자료를 활용해 게시글 목록 가져오기
+		List<BoardVO> PagingList = boardService.getListPaging(cri);
+		model.addAttribute("list", PagingList);
+	}
+	
 	
 	@PostMapping("/register")  // Post방식으로만 접속 허용
 	public String register(BoardVO vo, RedirectAttributes rttr) {

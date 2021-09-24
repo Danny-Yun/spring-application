@@ -1,6 +1,7 @@
 package org.ict.mapper;
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 import org.ict.mapper.BoardMapperTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,14 +23,14 @@ public class BoardMapperTest {
 	
 	// 테스트용 메서드의 이름은 testGetList
 	// 테스트 코드가 실행될 수 있도록 만들어보자
-	@Test
+	//@Test
 	public void testGetList() {
 		String keyword = "";
 		log.info(boardMapper.getList(keyword));
 	}
 	
 	// insert를 실행할 테스트 코드
-	@Test
+	//@Test
 	public void testInsertSelectKey() {
 		// 글 입력을 위해서 BoardVO 타입을 매개로 사용한다. 
 		BoardVO vo = new BoardVO();
@@ -64,6 +65,12 @@ public class BoardMapperTest {
 		vo.setB_no(2L);
 		
 		boardMapper.update(vo);
+	}
+	
+	@Test
+	public void testgetPaging() {
+		Criteria cri = new Criteria(5, 10);
+		boardMapper.getListPaging(cri);
 	}
 	
 	

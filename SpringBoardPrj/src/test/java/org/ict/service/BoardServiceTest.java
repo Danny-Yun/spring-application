@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,14 @@ public class BoardServiceTest {
 	private BoardService boardService;
 	
 	// 먼저 서비스가 제대로 주입되었는지 여부만 확인
-	@Test
+	//@Test
 	public void testExist() {
 		log.info(boardService);
 		// assertNotNull은 해당 객체가 주입이 되지 않아 null인 경우 에러를 발생시킨다.
 		assertNotNull(boardService);
 	}
 	
-	@Test
+	//@Test
 	public void testRegister() {
 		// register 로직이 BoardVO를 필요로 하므로,
 		// 먼저 vo부터 생성해서 자료 입력 후 전달함
@@ -44,7 +45,7 @@ public class BoardServiceTest {
 		boardService.register(vo);
 	}
 	
-	@Test
+	//@Test
 	public void testGetList() {
 		String keyword = "";
 		boardService.getList(keyword);
@@ -72,5 +73,11 @@ public class BoardServiceTest {
 	public void testRemove() {
 		long b_no = 11;
 		boardService.remove(b_no);
+	}
+	
+	@Test
+	public void testGetListPaging() {
+		Criteria cri = new Criteria(216, 10);
+		boardService.getListPaging(cri);
 	}
 }

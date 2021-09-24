@@ -20,6 +20,12 @@ INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nex
 INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nextval, '테스트4', '테스트444','글쓴이4');
 INSERT INTO board_tbl (b_no, b_title, b_content, b_writer) values (board_num.nextval, '테스트5', '테스트555','글쓴이5');
 
-SELECT * FROM board_tbl; 
+INSERT INTO board_tbl(b_no, b_title, b_content, b_writer)
+    (SELECT board_num.nextval, b_title, b_content, b_writer from board_tbl);
+
+SELECT * FROM
+(select /*+ INDEX_DESC(board_tbl pk_board) */
+rownum rn, board_tbl.* FROM board_tbl WHERE rownum <= (5*10)) WHERE rn > (5-1)*10; 
+
 
 commit;

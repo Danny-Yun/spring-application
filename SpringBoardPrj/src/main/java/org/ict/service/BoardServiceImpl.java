@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
+import org.ict.domain.Criteria;
 import org.ict.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +56,13 @@ public class BoardServiceImpl implements BoardService {
 		log.info("글 전체 목록 조회 실행");
 		List<BoardVO> boardList = boardMapper.getList(keyword);
 		return boardList;
+	}
+
+	@Override
+	public List<BoardVO> getListPaging(Criteria cri) {
+		log.info("글 페이징 목록 조회 실행");
+		List<BoardVO> pagingList = boardMapper.getListPaging(cri);
+		return pagingList;
 	}
 
 }
