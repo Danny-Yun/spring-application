@@ -65,4 +65,10 @@ public class BoardServiceImpl implements BoardService {
 		return pagingList;
 	}
 
+	@Override
+	public int getBoardTotal() {
+		int boardTotal = boardMapper.getBoardTotal();
+		return boardTotal;
+	}
+
 }

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="col-md-10">
-		<div class="col-md-5 offset-md-3">
+		<div class="col-md-5 offset-md-9">
 			<form style='display:inline' action="/board/list" method="get">
 				<input type="text" name="keyword" placeholder="검색어" value="${keyword}"/>
 				<input class="btn btn-success" type="submit" value="검색" />
@@ -39,6 +39,34 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			
+			<!-- 페이지네이션 버튼 위치 -->
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination justify-content-center">
+			    <!-- Prev버튼  -->
+			    <c:if test="${btnMaker.prev }">
+			      	<li class="page-item">
+			      		<a class="page-link" href="/board/list?pageNum=${btnMaker.startPage - 1}">Prev</a>
+			      	</li>
+			    </c:if>
+				
+				<!-- 번호 버튼 -->
+				<!-- begin, end속성을 이용해서 startPage부터 endPage까지의 숫자들이 버튼으로 나열되게끔 -->
+				<c:forEach begin="${btnMaker.startPage }" end="${btnMaker.endPage }" var="pageNum">
+					<li class="page-item">
+			      		<a class="page-link" href="/board/list?pageNum=${pageNum}">${pageNum}</a>
+			      	</li>
+				</c:forEach>
+					
+				<!-- Next버튼 -->
+			    <c:if test="${btnMaker.next }">
+			      	<li class="page-item">
+			      		<a class="page-link" href="/board/list?pageNum=${btnMaker.endPage + 1}">Next</a>
+			      	</li>
+			    </c:if>
+			  </ul>
+			</nav>
+			
 			<button type="button" class="btn btn-outline-success" onclick="location.href='/board/register'">새 글 쓰기</button>&nbsp;
 			
 			<script>

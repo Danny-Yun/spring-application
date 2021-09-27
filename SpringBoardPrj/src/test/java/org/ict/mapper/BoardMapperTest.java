@@ -67,11 +67,15 @@ public class BoardMapperTest {
 		boardMapper.update(vo);
 	}
 	
-	@Test
-	public void testgetPaging() {
+	//@Test
+	public void testGetPaging() {
 		Criteria cri = new Criteria(5, 10);
 		boardMapper.getListPaging(cri);
 	}
 	
+	@Test
+	public void testGetBoardTotal() {
+		boardMapper.getBoardTotal();
+	}
 	
 }

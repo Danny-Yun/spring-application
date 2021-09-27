@@ -75,9 +75,14 @@ public class BoardServiceTest {
 		boardService.remove(b_no);
 	}
 	
-	@Test
+	//@Test
 	public void testGetListPaging() {
 		Criteria cri = new Criteria(216, 10);
 		boardService.getListPaging(cri);
+	}
+	
+	@Test
+	public void testGetBoardTotal() {
+		boardService.getBoardTotal();
 	}
 }

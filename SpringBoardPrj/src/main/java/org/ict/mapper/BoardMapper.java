@@ -31,4 +31,6 @@ public interface BoardMapper {
 	// 페이징 처리를 하면서 조회할 것이기 때문에 Criteria 정보를 파라미터로 제공해야
 	// 몇 페이지의 글을 조회할지 정보를 같이 쿼리문에 전송할 수 있다.
 	public List<BoardVO> getListPaging(Criteria cri);
+	
+	public int getBoardTotal();
 }
