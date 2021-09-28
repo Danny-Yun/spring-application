@@ -2,6 +2,7 @@ package org.ict.mapper;
 
 import org.ict.domain.BoardVO;
 import org.ict.domain.Criteria;
+import org.ict.domain.SearchCriteria;
 import org.ict.mapper.BoardMapperTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,7 +70,7 @@ public class BoardMapperTest {
 	
 	//@Test
 	public void testGetPaging() {
-		Criteria cri = new Criteria(5, 10);
+		SearchCriteria cri = new SearchCriteria(5, 10);
 		boardMapper.getListPaging(cri);
 	}
 	

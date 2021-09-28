@@ -5,6 +5,7 @@ import java.util.List;
 import org.ict.domain.BoardVO;
 import org.ict.domain.Criteria;
 import org.ict.domain.PageDTO;
+import org.ict.domain.SearchCriteria;
 import org.ict.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,11 +48,11 @@ public class BoardController {
 	// 페이징 처리가 되는 리스트 메서드
 	@GetMapping("/list")
 	// Criteria를 파라미터에 선언해 pageNum, amount처리
-	public void List(Criteria cri, Model model) {
+	public void List(SearchCriteria cri, Model model) {
 		log.info("list로직 접속");
 		// pagenUM, amount 로 전달된 자료를 활용해 게시글 목록 가져오기
 		List<BoardVO> PagingList = boardService.getListPaging(cri);
-		int boardTotal = boardService.getBoardTotal();
+		int boardTotal = boardService.getBoardTotal(cri);
 		// 페이지 밑에 깔아줄 페이징버튼 관련 정보 생성
 		// 단순히 페이지버튼 깔리는지 여부를 테스트할 때는 
 		// 우선 글 갯수를 정확하게 모르므로 253개 임의로 넣고 

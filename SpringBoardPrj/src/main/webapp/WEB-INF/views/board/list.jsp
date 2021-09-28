@@ -6,16 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 리스트</title>
+<!-- 부트스트랩 -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" 
 	rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" 
 	crossorigin="anonymous">
+<!-- 제이쿼리 -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </head>
 <body>
 	<div class="col-md-10">
-		<div class="col-md-5 offset-md-9">
+		<div class="col-md-5 offset-md-8">
 			<form style='display:inline' action="/board/list" method="get">
 				<input type="text" name="keyword" placeholder="검색어" value="${keyword}"/>
 				<input class="btn btn-success" type="submit" value="검색" />
+				<select name="searchType">
+					<option value="n"
+					<c:out value="${btnMaker.cri.searchType == null ? 'selected' :'' }"/>>
+						-
+					</option>
+					<option value="t"
+					<c:out value="${btnMaker.cri.searchType eq 't' ? 'selected' :'' }"/>>
+						제목
+					</option>
+					<option value="c"
+					<c:out value="${btnMaker.cri.searchType eq 'c' ? 'selected' :'' }"/>>
+						본문
+					</option>
+					<option value="w"
+					<c:out value="${btnMaker.cri.searchType eq 'w' ? 'selected' :'' }"/>>
+						글쓴이
+					</option>
+					<option value="tc"
+					<c:out value="${btnMaker.cri.searchType eq 'tc' ? 'selected' :'' }"/>>
+						제목+본문
+					</option>
+					<option value="cw"
+					<c:out value="${btnMaker.cri.searchType eq 'cw' ? 'selected' :'' }"/>>
+						본문+글쓴이
+					</option>
+					<option value="tcw"
+					<c:out value="${btnMaker.cri.searchType eq 'tcw' ? 'selected' :'' }"/>>
+						제목+본문+글쓴이
+					</option>
+				</select>
 			</form>
 		</div>
 		<div class="col-md-10 offset-md-1">
@@ -46,22 +79,25 @@
 			    <!-- Prev버튼  -->
 			    <c:if test="${btnMaker.prev }">
 			      	<li class="page-item">
-			      		<a class="page-link" href="/board/list?pageNum=${btnMaker.startPage - 1}">Prev</a>
+			      		<a class="page-link" 
+		      		href="/board/list?pageNum=${btnMaker.startPage - 1}&searchType=${btnMaker.cri.searchType}&keyword=${btnMaker.cri.keyword}">Prev</a>
 			      	</li>
 			    </c:if>
 				
 				<!-- 번호 버튼 -->
 				<!-- begin, end속성을 이용해서 startPage부터 endPage까지의 숫자들이 버튼으로 나열되게끔 -->
 				<c:forEach begin="${btnMaker.startPage }" end="${btnMaker.endPage }" var="pageNum">
-					<li class="page-item">
-			      		<a class="page-link" href="/board/list?pageNum=${pageNum}">${pageNum}</a>
+					<li class="page-item ${btnMaker.cri.pageNum == pageNum ? 'active' : '' }">
+			      		<a class="page-link" 
+		      		href="/board/list?pageNum=${pageNum}&searchType=${btnMaker.cri.searchType}&keyword=${btnMaker.cri.keyword}">${pageNum}</a>
 			      	</li>
 				</c:forEach>
 					
 				<!-- Next버튼 -->
 			    <c:if test="${btnMaker.next }">
 			      	<li class="page-item">
-			      		<a class="page-link" href="/board/list?pageNum=${btnMaker.endPage + 1}">Next</a>
+			      		<a class="page-link" 
+		      		href="/board/list?pageNum=${btnMaker.endPage + 1}&searchType=${btnMaker.cri.searchType}&keyword=${btnMaker.cri.keyword}">Next</a>
 			      	</li>
 			    </c:if>
 			  </ul>
