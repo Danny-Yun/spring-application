@@ -109,11 +109,15 @@ public class BoardController {
 	
 	// 수정로직도 post방식으로 진행해야 한다.
 	@PostMapping("/modify") 
-	public String modify(BoardVO vo, RedirectAttributes rttr) {
+	public String modify(BoardVO vo, SearchCriteria cri, RedirectAttributes rttr) {
 		
 		log.info("modify 로직 접속");
 		boardService.modify(vo);
 		rttr.addFlashAttribute("success", "success");
+		// rttr.addAttribute("파리미터명", "전달자료")는 호출되면 redirect 주소 뒤에 파라미터를 붙여준다. 
+		rttr.addFlashAttribute("pageNum", cri.getPageNum());
+		rttr.addFlashAttribute("searchType", cri.getSearchType());
+		rttr.addFlashAttribute("keyword", cri.getKeyword());
 		return "redirect:/board/get/" + vo.getB_no();
 	}
 	

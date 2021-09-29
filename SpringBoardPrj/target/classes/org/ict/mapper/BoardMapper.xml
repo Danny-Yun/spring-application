@@ -4,6 +4,51 @@
 <!-- 위의 스키마 작성 후, 어떤 인터페이스의 메서드를 쿼리문과 연결해줄지 아래와 같이 
 	인터페이스 파일부터 mapper태그로 연결한다.  -->
 <mapper namespace="org.ict.mapper.BoardMapper">
+
+	<!-- 여기부터 조건별 쿼리가 들어감 
+	먼저 전달받은 searchType이 null인지 아닌지 여부를 확인 후
+	searchType이 null 이 아닌 경우만 다시 어떤 키워드가 들어오는지
+	확인해서 맞는 조건문을 공통쿼리와 limit부분 사이에 붙여준다.-->
+	<sql id="search"> 
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				(b_title LIKE '%'||#{keyword}||'%') AND 
+			</if>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'c'.toString()">
+				(b_content LIKE '%'||#{keyword}||'%') AND 
+			</if>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'w'.toString()">
+				(b_writer LIKE '%'||#{keyword}||'%') AND 
+			</if>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'tc'.toString()">
+				((b_title LIKE '%'||#{keyword}||'%') 
+					OR
+				(b_content LIKE '%'||#{keyword}||'%')) AND 
+			</if>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'cw'.toString()">
+				((b_content LIKE '%'||#{keyword}||'%') 
+					OR
+				(b_writer LIKE '%'||#{keyword}||'%')) AND 
+			</if>
+		</if>
+		<if test="searchType != null">
+			<if test="searchType == 'tcw'.toString()">
+				((b_title LIKE '%'||#{keyword}||'%') 
+					OR
+				(b_content LIKE '%'||#{keyword}||'%') 
+					OR
+				(b_writer LIKE '%'||#{keyword}||'%')) AND 
+			</if>
+		</if>
+	</sql>
 	
 	<!-- 위의 BoardMapper 인터페이스의 getList메서드를 호출시 실제로 실행할
 		쿼리문을 아래와 같이 연결해준다. mybatis는 단일자료와 리스트자료를 
@@ -69,46 +114,6 @@
 				 rownum rn, board_tbl.* FROM board_tbl 
 				 WHERE 
 		]]>
-		<!-- 조건별 쿼리 -->
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				(b_title LIKE '%'||#{keyword}||'%') AND 
-			</if>
-		</if>
-		<if test="searchType != null">
-			<if test="searchType == 'c'.toString()">
-				(b_content LIKE '%'||#{keyword}||'%') AND 
-			</if>
-		</if>
-		<if test="searchType != null">
-			<if test="searchType == 'w'.toString()">
-				(b_writer LIKE '%'||#{keyword}||'%') AND 
-			</if>
-		</if>
-		<if test="searchType != null">
-			<if test="searchType == 'tc'.toString()">
-				((b_title LIKE '%'||#{keyword}||'%') 
-					OR
-				(b_content LIKE '%'||#{keyword}||'%')) AND 
-			</if>
-		</if>
-		<if test="searchType != null">
-			<if test="searchType == 'cw'.toString()">
-				((b_content LIKE '%'||#{keyword}||'%') 
-					OR
-				(b_writer LIKE '%'||#{keyword}||'%')) AND 
-			</if>
-		</if>
-		<if test="searchType != null">
-			<if test="searchType == 'tcw'.toString()">
-				((b_title LIKE '%'||#{keyword}||'%') 
-					OR
-				(b_content LIKE '%'||#{keyword}||'%') 
-					OR
-				(b_writer LIKE '%'||#{keyword}||'%')) AND 
-			</if>
-		</if>
-		
 		<include refid="search"></include>
 		
 		<!-- 아래부터는 MySQL의 limit와 같은 역할을 하는 부분 -->

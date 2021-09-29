@@ -53,6 +53,10 @@
 					<input type="hidden" name="b_regdate" value="${board.b_regdate}" />
 					<input type="hidden" name="b_updatedate" value="${board.b_updatedate}" />
 					<input type="hidden" name="b_writer" value="${board.b_writer}" />
+
+					<input type="hidden" name="page" value="${param.pageNum }" />
+					<input type="hidden" name="searchType" value="${param.searchType}" />
+					<input type="hidden" name="keyword" value="${param.keyword}" />
 				</div>
 			</div>
 		</form>
