@@ -3,7 +3,6 @@ package org.ict.mapper;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
-import org.ict.domain.Criteria;
 import org.ict.domain.SearchCriteria;
 
 public interface BoardMapper {

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ict.mapper.ReplyMapper">
+	
+	<select id="getReplyList" resultType="org.ict.domain.ReplyVO">
+	 	SELECT * FROM reply_tbl WHERE b_no = #{b_no}
+	 		ORDER BY r_no DESC
+	</select>
+	
+	<insert id="create">
+		INSERT INTO reply_tbl (r_no, b_no, reply, replyer) 
+			VALUES (reply_num.nextval, #{b_no}, #{reply}, #{replyer})
+	</insert>
+	
+	<update id="update">
+		UPDATE reply_tbl
+			SET
+		reply = #{reply}, updateDate = SYSDATE
+			WHERE r_no = #{r_no}
+	</update>
+	
+	<delete id="delete">
+	 	DELETE FROM reply_tbl WHERE r_no = #{r_no}
+	</delete>
+</mapper>
