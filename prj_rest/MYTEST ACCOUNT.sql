@@ -16,4 +16,6 @@ ALTER TABLE reply_tbl ADD CONSTRAINT fk_reply FOREIGN KEY (b_no) REFERENCES boar
 -- boardTBL의 bno에 프라이머리키 안걸어서 생긴 오류입니다. BOARD_TBL의 제약조건 보시면 없어요
 ALTER TABLE board_tbl ADD CONSTRAINT pk_board PRIMARY KEY (b_no);
 
+SELECT * FROM reply_tbl;
+
 COMMIT;

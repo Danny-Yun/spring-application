@@ -1,3 +1,4 @@
+
 /* 오라클은 auto_increment가 없으므로 board_num이라는 시퀀스를 만들면 0이 저장된다.
    이후 primary key가 들어갈 자리에 board_num.nextval이라고 기입하면 실행할 때마다 
    1씩 증가된 새로운 값을 그 위치에 넣어준다. */
