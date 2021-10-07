@@ -68,7 +68,7 @@
 							<td>
 								<a href='/board/get/${list.b_no }?pageNum=${btnMaker.cri.pageNum}
 									&searchType=${btnMaker.cri.searchType}&keyword=${btnMaker.cri.keyword}'>
-									${list.b_title }&nbsp; [${board.replyCount }]
+									${list.b_title }&nbsp; [${list.replyCount }]
 								</a>
 							</td>
 							<td>${list.b_writer }</td>
