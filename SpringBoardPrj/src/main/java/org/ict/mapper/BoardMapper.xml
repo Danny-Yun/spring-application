@@ -131,4 +131,10 @@
 		b_no > 0
 	</select>
 	
+	<update id="updateReplyCount">
+		UPDATE board_tbl 
+			SET 
+		replyCount = replyCount + #{amount } WHERE b_no = #{b_no}
+	</update>
+	
 </mapper>

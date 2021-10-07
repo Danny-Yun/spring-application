@@ -3,7 +3,6 @@ package org.ict.service;
 import java.util.List;
 
 import org.ict.domain.BoardVO;
-import org.ict.domain.Criteria;
 import org.ict.domain.SearchCriteria;
 
 // 서비스 계층은 하나의 동작을 담당한다. 

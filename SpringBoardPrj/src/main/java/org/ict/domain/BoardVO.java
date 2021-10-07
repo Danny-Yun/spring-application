@@ -13,4 +13,5 @@ public class BoardVO {
 	private String b_writer;
 	private Date b_regdate;
 	private Date b_updatedate;
+	private Long replyCount;
 }

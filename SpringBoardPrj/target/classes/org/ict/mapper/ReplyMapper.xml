@@ -23,4 +23,8 @@
 	<delete id="delete">
 	 	DELETE FROM reply_tbl WHERE r_no = #{r_no}
 	</delete>
+	
+	<select id="getBoardNum" resultType="long">
+		SELECT b_no FROM reply_tbl WHERE r_no = #{r_no}
+	</select>
 </mapper>

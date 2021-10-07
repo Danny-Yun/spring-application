@@ -28,5 +28,13 @@ SELECT * FROM
 (select /*+ INDEX_DESC(board_tbl pk_board) */
 rownum rn, board_tbl.* FROM board_tbl WHERE rownum <= (5*10)) WHERE rn > (5-1)*10; 
 
+-- 댓글 개수를 게시판 글에 표시
+ALTER TABLE board_tbl add(replyCount number default 0);
+
+-- 현재 엮인 댓글을 계산해서 replyCount에 입력해주는 쿼리문
+UPDATE board_tbl set replyCount = 
+ (SELECT count(r_no) from reply_tbl WHERE reply_tbl.b_no = board_tbl.b_no);
 
 commit;
+
+SELECT * FROM board_tbl ORDER BY b_no DESC;
