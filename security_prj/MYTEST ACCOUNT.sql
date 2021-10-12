@@ -40,4 +40,14 @@ CREATE TABLE member_auth (
 SELECT * FROM member_tbl;
 SELECT * FROM member_auth;
 
+-- 자동 로그인 
+CREATE TABLE persistent_logins (
+    username varchar(64) NOT NULL,
+    series  varchar(64) PRIMARY KEY,
+    token varchar(64) NOT NULL, 
+    last_used timestamp NOT NULL
+);
+
+SELECT * FROM persistent_logins;
+
 commit;
