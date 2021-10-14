@@ -3,6 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	.uploadResult {
+		width:100%;
+		background-color: gray;
+	}
+	.uploadResult ul {
+		display: flex;
+		flex-flow: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.uploadResult ul li {
+		list-style: none;
+		padding: 10px;
+	}
+	.uploadResult ul li img {
+		width: 20px
+	}
+</style>
 <meta charset="UTF-8">
 <title>Ajax 파일 업로드 폼</title>
 <!-- 제이쿼리 -->
@@ -13,6 +32,12 @@
 	
 	<div class="uploadDiv">
 		<input type="file" name="uploadFile" multiple />
+	</div>
+	
+	<div class='uploadResult'>
+		<ul>
+			<!-- 업로드된 파일들이 들어갈 자리 -->
+		</ul>
 	</div>
 	
 	<button id="uploadBtn">Upload</button>
@@ -36,6 +61,8 @@
 				}
 				return true;
 			}
+			
+			var cloneObj = $(".uploadDiv").clone();
 			
 			$('#uploadBtn').on("click", function(e) {
 				
@@ -62,11 +89,35 @@
 					contentType: false,
 					data : formData,
 					type : 'POST',
+					dataType:'json',
 					success: function(result){
 						alert("Uploaded");
+						console.log(result);
+						
+						showUploadedFile(result);
+						$(".uploadDiv").html(cloneObj.html());
 					}
 				}); // END Ajax
 			});
+			
+			let uploadResult = $(".uploadResult ul");
+			function showUploadedFile(uploadResultArr) {
+				var str = "";
+				
+				$(uploadResultArr).each(function(i, obj){
+					
+					if(!obj.image) {
+						str += "<li><img src='/resources/clip.png'>" + obj.fileName + "</li>";
+					} else {
+						/* str += "<li>" + obj.fileName + "</li>"; */
+						// 파일 이름 + 썸네일 보여주기 위해 썸네일 주소 요청하게 만들기
+						var fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + 
+																obj.uuid + "_" + obj.fileName);
+						str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+					}
+				});
+				uploadResult.append(str);
+			}
 			
 		});
 	</script>
